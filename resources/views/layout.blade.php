@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         html, body {
             background-color: #fff;
@@ -65,5 +66,8 @@
 </head>
 <body>
 @yield('content');
+
 </body>
+<script src="{{ asset('js/app.js') }}"></script>
+<script>@yield('js')</script>
 </html>

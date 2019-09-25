@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends ('layout')
 
-    <title>Laravel</title>
-</head>
-<body>
-<h1>Edit post</h1>
-<form method="post" action="/post/{{$post->slug}}">
+@section ('content')
+
+<form class="col-6 offset-3 mt-5" method="post" action="/post/{{$post->slug}}">
     {{ method_field('PATCH') }}
     {{ csrf_field() }}
-    <div class="field">
-        <label>Slug</label>
-        <input type="text" class="control" name="slug" value="{{$post->slug}}">
+    <div class="d-flex justify-content-center"><h1 class="text-black-100 font-weight-bold">Edit post</h1></div>
+    <div class="form-group mb-5">
+        <label class="text-black-100 font-weight-bold" for="InputSlug">Slug:</label>
+        <input type="text" class="form-control" name="slug" value="{{$post->slug}}">
     </div>
-    <div>
-        <label>Title</label>
-        <input type="text" name="title" value="{{$post->title}}">
+    <div class="form-group mb-5">
+        <label class="text-black-100 font-weight-bold" for="InputTitle">Title:</label>
+        <input type="text" class="form-control" name="title" value="{{$post->title}}">
     </div>
-    <div>
-        <label>Body</label>
-        <textarea name="body">{{$post->body}}</textarea>
+    <div class="form-group mb-5">
+        <label class="text-black-100 font-weight-bold" for="InputBody">Content:</label>
+        <textarea name="body" class="form-control">{{$post->body}}</textarea>
     </div>
-<div>
-    <input type="submit" value="Edit post">
-</div>
+
+    <div class="d-flex justify-content-center"><input type="submit" class=" pr-5 pl-5 btn btn-primary"  value="Save Changes"></div>
+
 </form>
-</body>
-</html>
+@endsection

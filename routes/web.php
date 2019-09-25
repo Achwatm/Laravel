@@ -30,13 +30,13 @@ Route::get('/test', function () {
         ]);
 });
 Route::get('/posts', function(){
-    $posts = App\Post::all();
+    $posts = App\Post::orderBy('created_at','DESC')->paginate(5);
     return view('post.post', compact('posts'));
 });
+Route::delete('/post/{post}', 'PostController@delete')->name('post.delete');
 Route::get('/post/create', 'PostController@create');
-Route::get('/post/{post}', 'PostController@show');
 Route::patch('/post/{post}', 'PostController@update');
-Route::get('/post/{post}/edit', 'PostController@edit');
+Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
 Route::post('/post', 'PostController@store');
 
 

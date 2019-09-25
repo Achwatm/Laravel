@@ -1,21 +1,25 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends ('layout')
 
-    <title>Laravel</title>
-</head>
-<body>
-<h1> Posts on my blog</h1>
-<?php foreach($posts as $post):?>
-<div style="border-bottom: 1px solid black">
-    <p>{{$post->slug}}</p>
-    <p>{{$post->title}}</p>
-    <p>{{$post->body}}</p>
+@section ('content')
+<div><h1 class="mb-5">Your posts</h1><a href="/post/create" >Add new post</a></div>
 
+@foreach($posts as $post)
+
+<div class="d-flex  border p-4 flex-column mb-5">
+
+    <div>Slug: {{$post->slug}}</div>
+    <div>Title: {{$post->title}}</div>
+    <div>Content: {{$post->body}}</div>
+    <div class="mt-2 d-flex">
+        <a class="btn btn-primary mr-5" href="{{route('post.edit',$post->slug)}}">Edit</a>
+        <form method="post" action="{{route('post.delete',$post->slug)}}">
+            @csrf
+            @method('DELETE')
+        <input type="submit" class="btn btn-primary" value="delete">
+        </form>
+    </div>
 </div>
 
-<?php endforeach;?>
-</body>
-</html>
+@endforeach
+{{$posts->links()}}
+@endsection

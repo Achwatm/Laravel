@@ -32,7 +32,7 @@ class PostController extends Controller
         $post->title = request('title');
         $post->body = request('body');
         $post->save();
-        return redirect('/post/'.request('slug'));
+        return redirect('/posts');
     }
 
     public function edit($slug){
@@ -51,6 +51,18 @@ class PostController extends Controller
         $post->body = request('body');
 
         $post->save();
+
+        return redirect('/posts');
+
+    }
+
+    public function delete($slug){
+
+        $post = Post::where('slug',$slug)->firstOrFail();
+
+        $post->delete();
+
+        return redirect('/posts');
 
     }
 

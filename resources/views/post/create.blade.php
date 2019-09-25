@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends ('layout')
 
-    <title>Laravel</title>
-</head>
-<body>
-<h1>Create new post</h1>
-<form method="POST" action="/post">
+@section ('content')
+
+<form class="col-6 offset-3 mt-5" method="POST" action="/post">
     {{csrf_field()}}
-    <div>
-        <input type="text" name="slug" placeholder="Slug">
+    <div class="d-flex justify-content-center"><h1 class="text-black-100 font-weight-bold">Create new post</h1></div>
+    <div class="form-group mb-5">
+        <label class="text-black-100 font-weight-bold" for="InputSlug">Slug:</label>
+        <input type="text" class="form-control" name="slug">
     </div>
-    <div>
-        <input type="text" name="title" placeholder="title">
+    <div class="form-group mb-5">
+        <label class="text-black-100 font-weight-bold" for="InputTitle">Title:</label>
+        <input type="text" class="form-control" name="title">
     </div>
-    <div>
-        <textarea name="body" placeholder="body"></textarea>
+    <div class="form-group mb-5">
+        <label class="text-black-100 font-weight-bold" for="InputBody">Content:</label>
+        <textarea name="body" class="form-control"></textarea>
     </div>
-<div>
-    <input type="submit" value="Post">
-</div>
+
+    <div class="d-flex justify-content-center"><input type="submit" class=" pr-5 pl-5 btn btn-primary"  value="Add Post"></div>
+
 </form>
-</body>
-</html>
+@endsection
